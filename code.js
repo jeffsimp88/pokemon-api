@@ -84,6 +84,7 @@ function renderPokemon(array) {
 function releasePokemon(pokemon) {
   pokemonArray.splice(pokemonArray.indexOf(pokemon), 1);
   renderPokemon(pokemonArray);
+  closeDetails();
 }
 function giveNickname(pokemon) {
   let newNickname = prompt("What would you like to name them?");
@@ -95,6 +96,7 @@ function giveNickname(pokemon) {
     pokemon["nickname"] = newNickname;
   }
   renderPokemon(pokemonArray);
+  displayInfo(pokemon);
 }
 function addPokemon(event) {
   event.preventDefault();
@@ -113,7 +115,7 @@ renderPokemon(pokemonArray);
 
 function displayInfo(pokemon) {
   let displayBox = document.querySelector(".pokemonDetails");
-  displayBox.innerHTML = "";
+
   let editDetails = document.createElement("details");
   editDetails.innerHTML = `<summary> Edit </summary>`;
   let releaseButton = document.createElement("button");
@@ -132,7 +134,7 @@ function displayInfo(pokemon) {
 
   editDetails.append(releaseButton, nicknameButton);
   displayBox.innerHTML = `
-  <img class="pokeball open" src="./images/pokeball_open.png">
+  <p class="closeDetails"><img class="pokeball open" src="./images/pokeball_open.png">Close</p>
   <h2>Name: ${capitalize(pokemon.name)}
   <br> Nickname: ${pokemon.nickname ? `"${pokemon.nickname}"` : "-"}
   </h2>
@@ -164,6 +166,8 @@ function displayInfo(pokemon) {
         <p>Height: ${pokemon.height}"  <br> Weight: ${pokemon.weight}Kg</p>
         </div>
   `;
+  let close = document.querySelector(".closeDetails");
+  close.addEventListener("click", closeDetails);
   displayBox.append(editDetails);
 }
 
@@ -173,4 +177,10 @@ function addTypeColor(array) {
       (type) => (type.type["color"] = typeColor[type.type.name])
     )
   );
+}
+
+function closeDetails() {
+  let displayBox = document.querySelector(".pokemonDetails");
+  displayBox.innerHTML =
+    '<h2>Select a P<span><img class="pokeball closed" style="width: 1rem;" src="./images/pokeball.png" alt="pokeball"></span>kéball to see more!</h2>';
 }
