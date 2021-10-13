@@ -61,7 +61,8 @@ function fetchPokemon(pokemonName) {
       pokemonArray.push(pokemon);
       addTypeColor(pokemonArray);
       renderPokemon(pokemonArray);
-    });
+    })
+    .catch((error) => alert(`The Pokemon, ${pokemonName}, does not exist.`));
 }
 
 let myFavPokemon = [
