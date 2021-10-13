@@ -83,7 +83,7 @@ form {
   vertical-align: middle;
 }
 .pokemon > h4 {
-  margin: 0px;
+  margin: -1px;
   background: var(--pokemon-blue);
   padding: 2px 0px;
 }
@@ -95,7 +95,7 @@ form {
 }
 
 .pokemon > p {
-  margin: 0px;
+  margin: -1px;
   background: var(--pokemon-blue);
   padding: 5px 0px;
 }
@@ -144,9 +144,27 @@ form {
   padding: 10px;
   margin: 15px 0px;
   min-width: 310px;
+  transition-duration: 0.5s;
 }
-.pokemonDetails > img {
+.pokemonDetails > p > img {
   width: 20px;
+  margin: 0px 3px;
+  vertical-align: middle;
+}
+.closeDetails {
+  margin: 2px 0px;
+  width: fit-content;
+  transition-duration: 0.5s;
+  padding: 4px;
+  border-radius: 5px;
+}
+
+.closeDetails:hover {
+  background-color: var(--pokemon-blue);
+}
+
+.closeDetails:active {
+  border: 1px solid var(--pokemon-yellow);
 }
 
 .pokemonDetails > h2 {
