@@ -139,7 +139,7 @@ form {
   image-rendering: pixelated;
 }
 
-h4 > .pokeball.closed:hover {
+.pokeball.closed:hover {
   animation: wobble 0.8s;
   cursor: pointer;
 }
@@ -186,7 +186,7 @@ h4 > .pokeball.closed:hover {
   min-width: 310px;
   transition-duration: 0.5s;
 }
-.pokemonDetails > p > img {
+.pokeball.closed {
   width: 20px;
   margin: 0px 3px;
   vertical-align: middle;
@@ -216,6 +216,12 @@ h4 > .pokeball.closed:hover {
 }
 .pokeball.open:hover {
   background: url(./images/pokeball_closing.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.pokeball.open:active {
+  background: url(./images/pokeball.png);
   background-size: contain;
   background-repeat: no-repeat;
 }
