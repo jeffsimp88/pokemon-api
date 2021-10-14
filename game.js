@@ -1,5 +1,6 @@
 const baseURL = "https://pokeapi.co/api/v2";
 const gameElement = document.querySelector(".whosThatPokemon");
+let currentPokemon = [];
 const getRandomId = (maxId) => Math.floor(Math.random() * maxId + 1);
 
 function fetchPokemon() {
@@ -8,10 +9,14 @@ function fetchPokemon() {
     .then((response) => response.json())
     .then(function (pokemon) {
       createGuessElement(pokemon);
+      addTypeColor(currentPokemon);
+      closeDetails();
     });
 }
 
 function createGuessElement(pokemon) {
+  currentPokemon = [];
+  currentPokemon.push(pokemon);
   gameElement.innerHTML = "";
   let pokemonImgBox = document.createElement("div");
   pokemonImgBox.classList.add("pokemonImg");
@@ -24,6 +29,14 @@ function createGuessElement(pokemon) {
     `It's ${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)}!`
   );
   pokemonName.classList.add("hidden");
+
+  let pokeball = document.createElement("img");
+  pokeball.src = "./images/pokeball.png";
+  pokeball.classList.add("pokeball", "closed");
+  pokeball.addEventListener("click", function () {
+    displayInfo(pokemon);
+  });
+  pokemonName.append(pokeball);
 
   pokeImg.addEventListener("click", () => {
     pokeImg.classList.toggle("pokemon-sprite-silhouette");
