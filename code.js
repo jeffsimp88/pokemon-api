@@ -131,10 +131,11 @@ function displayInfo(pokemon) {
   nicknameButton.classList.add("nicknameButton");
   nicknameButton.innerHTML = "Nickname";
   nicknameButton.addEventListener("click", () => giveNickname(pokemon));
-
+  /* <div class="pokeball open"></div><p class="closeDetails"><div class="pokeball open"></div>Close</p> */
   editDetails.append(releaseButton, nicknameButton);
   displayBox.innerHTML = `
-  <p class="closeDetails"><img class="pokeball open" src="./images/pokeball_open.png">Close</p>
+  <div class="closeDetails"><div class="pokeball open"></div>Close</div>
+  
   <h2>Name: ${capitalize(pokemon.name)}
   <br> Nickname: ${pokemon.nickname ? `"${pokemon.nickname}"` : "-"}
   </h2>
