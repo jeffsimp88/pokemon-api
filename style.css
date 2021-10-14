@@ -99,9 +99,13 @@ form {
   background: var(--pokemon-blue);
   padding: 5px 0px;
 }
+.pokeball {
+  image-rendering: pixelated;
+}
 
-.pokeball.closed:hover {
+h4 > .pokeball.closed:hover {
   animation: wobble 0.8s;
+  cursor: pointer;
 }
 .pokeball.closed:active {
   transform: scale(130%);
@@ -157,10 +161,27 @@ form {
   transition-duration: 0.5s;
   padding: 4px;
   border-radius: 5px;
+  font-size: 13px;
+  display: flex;
+  align-items: flex-start;
 }
 
 .closeDetails:hover {
   background-color: var(--pokemon-blue);
+  cursor: pointer;
+}
+.pokeball.open {
+  height: 35px;
+  width: 25px;
+  background: url(./images/pokeball_open.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition-duration: 0.1s;
+}
+.pokeball.open:hover {
+  background: url(./images/pokeball_closing.png);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .closeDetails:active {
