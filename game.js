@@ -32,18 +32,18 @@ function createGuessElement(pokemon) {
 
   let pokeball = document.createElement("img");
   pokeball.src = "./images/pokeball.png";
-  pokeball.classList.add("pokeball", "closed");
+  pokeball.classList.add("pokeball", "closed", "hidden");
   pokeball.addEventListener("click", function () {
     displayInfo(pokemon);
   });
-  pokemonName.append(pokeball);
 
   pokeImg.addEventListener("click", () => {
     pokeImg.classList.toggle("pokemon-sprite-silhouette");
     pokemonName.classList.toggle("hidden");
+    pokeball.classList.toggle("hidden");
   });
   pokemonImgBox.append(pokeImg);
-  gameElement.append(pokemonImgBox, pokemonName);
+  gameElement.append(pokemonImgBox, pokemonName, pokeball);
 }
 
 fetchPokemon();
