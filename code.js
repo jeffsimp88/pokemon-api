@@ -82,9 +82,12 @@ function renderPokemon(array) {
 }
 
 function releasePokemon(pokemon) {
-  pokemonArray.splice(pokemonArray.indexOf(pokemon), 1);
-  renderPokemon(pokemonArray);
-  closeDetails();
+  let pokemonIndex = pokemonArray.indexOf(pokemon);
+  if (pokemonIndex >= 0) {
+    pokemonArray.splice(pokemonArray.indexOf(pokemon), 1);
+    renderPokemon(pokemonArray);
+    closeDetails();
+  }
 }
 function giveNickname(pokemon) {
   let newNickname = prompt("What would you like to name them?");
@@ -116,23 +119,6 @@ renderPokemon(pokemonArray);
 function displayInfo(pokemon) {
   let displayBox = document.querySelector(".pokemonDetails");
 
-  let editDetails = document.createElement("details");
-  editDetails.innerHTML = `<summary> Edit </summary>`;
-  let releaseButton = document.createElement("button");
-  releaseButton.classList.add("pokemonButton");
-  releaseButton.classList.add("releaseButton");
-  releaseButton.innerText = `Release`;
-  releaseButton.addEventListener("click", function () {
-    releasePokemon(pokemon);
-  });
-
-  let nicknameButton = document.createElement("button");
-  nicknameButton.classList.add("pokemonButton");
-  nicknameButton.classList.add("nicknameButton");
-  nicknameButton.innerHTML = "Nickname";
-  nicknameButton.addEventListener("click", () => giveNickname(pokemon));
-  /* <div class="pokeball open"></div><p class="closeDetails"><div class="pokeball open"></div>Close</p> */
-  editDetails.append(releaseButton, nicknameButton);
   displayBox.innerHTML = `
   <div class="closeDetails"><div class="pokeball open"></div>Close</div>
   
@@ -169,7 +155,36 @@ function displayInfo(pokemon) {
   `;
   let close = document.querySelector(".closeDetails");
   close.addEventListener("click", closeDetails);
-  displayBox.append(editDetails);
+  if (pokemonArray.includes(pokemon)) {
+    let editDetails = document.createElement("details");
+    editDetails.innerHTML = `<summary> Edit </summary>`;
+    let releaseButton = document.createElement("button");
+    releaseButton.classList.add("pokemonButton");
+    releaseButton.classList.add("releaseButton");
+    releaseButton.innerText = `Release`;
+    releaseButton.addEventListener("click", function () {
+      releasePokemon(pokemon);
+    });
+
+    let nicknameButton = document.createElement("button");
+    nicknameButton.classList.add("pokemonButton");
+    nicknameButton.classList.add("nicknameButton");
+    nicknameButton.innerHTML = "Nickname";
+    nicknameButton.addEventListener("click", () => giveNickname(pokemon));
+    /* <div class="pokeball open"></div><p class="closeDetails"><div class="pokeball open"></div>Close</p> */
+
+    editDetails.append(releaseButton, nicknameButton);
+    displayBox.append(editDetails);
+  } else {
+    let addPokemonButton = document.createElement("button");
+    addPokemonButton.classList.add("pokemonButton");
+    addPokemonButton.innerHTML = "Add Pokémon";
+    addPokemonButton.addEventListener("click", () => {
+      fetchPokemon(pokemon.name);
+      closeDetails();
+    });
+    displayBox.append(addPokemonButton);
+  }
 }
 
 function addTypeColor(array) {
