@@ -35,7 +35,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 25px;
+  padding: 10px 15px;
   border: 7px solid var(--pokemon-blue);
   border-bottom: 7px solid var(--pokemon-dark-yellow);
   border-left: 7px solid var(--pokemon-dark-yellow);
